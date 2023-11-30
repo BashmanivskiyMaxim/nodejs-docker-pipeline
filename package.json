@@ -1,0 +1,25 @@
+{
+  "name": "nodegitlabcicd",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha tests/tests.js",
+    "start": "node src/index.js",
+    "dev": "nodemon src/index.js",
+    "build": "webpack",
+    "prod": "node dist/index.bundle.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "chai": "^4.3.10",
+    "chai-http": "^4.4.0",
+    "express": "^4.18.2"
+  },
+  "devDependencies": {
+    "mocha": "^10.2.0",
+    "webpack": "^5.81.0",
+    "webpack-cli": "^5.0.2"
+  }
+}
