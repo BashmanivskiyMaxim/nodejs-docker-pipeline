@@ -1,4 +1,4 @@
-let url = "http://localhost:3001";
+var app = require('../src/index.js');
 
 //Require the dev-dependencies
 let chai = require('chai');
@@ -11,7 +11,7 @@ describe('NodeJSApp', () => {
 
     describe('Scenario #1', () => {
         it('Get /', function (done) {
-            chai.request(url)
+            chai.request(app)
                 .get('/')
                 .end((err, res) => {
                     res.status.should.be.equal(200);
@@ -20,7 +20,7 @@ describe('NodeJSApp', () => {
                 });
         });
         it('Get /users', function (done) {
-            chai.request(url)
+            chai.request(app)
                 .get('/users')
                 .end((err, res) => {
                     res.status.should.be.equal(200);
