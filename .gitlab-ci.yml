@@ -26,5 +26,22 @@ test:
     stage: test
     script:
         - docker pull $CONTAINER_TEST_IMAGE
+        - docker run $CONTAINER_TEST_IMAGE npm test
+
+
+
+release-image:
+    stage: release
+    script:
+        - docker pull $CONTAINER_TEST_IMAGE
         - docker tag $CONTAINER_TEST_IMAGE $CONTAINER_RELEASE_IMAGE
         - docker push $CONTAINER_RELEASE_IMAGE
+
+deploy:
+    stage: deploy
+    tags:
+        - local_docker
+    script:
+        - docker pull $CONTAINER_RELEASE_IMAGE
+        - docker run -d -p 3001:3001 $CONTAINER_RELEASE_IMAGE
+
