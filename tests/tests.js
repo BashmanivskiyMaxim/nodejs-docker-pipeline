@@ -15,7 +15,7 @@ describe('NodeJSApp', () => {
                 .get('/')
                 .end((err, res) => {
                     res.status.should.be.equal(200);
-                    res.text.should.be.equal('Hello World!')
+                    res.text.should.be.equal('Hello World')
                     done();
                 });
         });
