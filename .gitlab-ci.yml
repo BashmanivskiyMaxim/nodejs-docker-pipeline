@@ -26,6 +26,7 @@ test:
     stage: test
     script:
         - docker pull $CONTAINER_TEST_IMAGE
+        - docker run $CONTAINER_TEST_IMAGE npm start
         - docker run $CONTAINER_TEST_IMAGE npm test
 
 
