@@ -34,10 +34,10 @@ jobs:
         run: echo "${{ secrets.DOCKER_HUB_PASSWORD }}" | docker login -u ${{ secrets.DOCKER_HUB_USERNAME }} --password-stdin
 
       - name: Build Docker image
-        run: docker build -t your-dockerhub-username/nodejs-app:latest .
+        run: docker build -t madmaxcimka/nodejs-app:latest .
 
       - name: Push Docker image to Docker Hub
-        run: docker push your-dockerhub-username/nodejs-app:latest
+        run: docker push madmaxcimka/nodejs-app:latest
 
   deploy:
     runs-on: ubuntu-latest
@@ -46,8 +46,8 @@ jobs:
       - name: Deploy to server
         run: |
           sshpass -p "${{ secrets.SERVER_PASSWORD }}" ssh -o StrictHostKeyChecking=no ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_IP }} << 'EOF'
-          docker pull your-dockerhub-username/nodejs-app:latest
+          docker pull madmaxcimka/nodejs-app:latest
           docker stop nodejs-app || true
           docker rm nodejs-app || true
-          docker run -d --name nodejs-app -p 80:3001 your-dockerhub-username/nodejs-app:latest
+          docker run -d --name nodejs-app -p 80:3001 madmaxcimka/nodejs-app:latest
           EOF
